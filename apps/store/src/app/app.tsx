@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import './app.scss';
-
-import { Header } from '@nxegghead/store/ui-shared';
-
+import { useNavigate } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import CardContent from '@material-ui/core/CardContent';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
-import { formatRating } from '@nxegghead/store/util-formatters';
-
-import {Route, useNavigate, Routes} from 'react-router-dom';
-
-import { StoreFeatureGameDetail } from '@nxegghead/store/feature-game-detail';
+import { Header } from '@nxegghead/store/ui-shared';
 import { Game } from '@nxegghead/api/util-interfaces';
+
+import './app.scss';
+
+function formatRating(rating: number) {
+  return `${Math.round(rating * 100) / 10} / 10`;
+}
 
 export const App = () => {
   const navigate = useNavigate();
@@ -95,10 +94,6 @@ export const App = () => {
               ))}
         </div>
       </div>
-
-      <Routes>
-        <Route path="/game/:id" element={<StoreFeatureGameDetail />}/>
-      </Routes>
     </>
   );
 };
